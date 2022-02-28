@@ -1,4 +1,7 @@
 name: test-action
+env:
+  APLLICATION_NAME: "myapp"
+  DEPLOY_PACKAGE_NAME: "myapp_deploy_file-ver-${{ github.sha }}"
 on:
   push:
     branches: [ main ]
@@ -9,6 +12,12 @@ jobs:
     steps:
       - name: Run hello message in testing
         run: echo "Hello, world! from testing job"
+        
+      - name: Execute few commands
+        run: |
+          echo "hello message 1"
+          echo "hello message 2"
+          echo "Application name: ${{env.APPLICATIOPN_NAME}}"
           
   my_deploy:
     runs-on: ubuntu-latest
@@ -16,4 +25,8 @@ jobs:
     steps:
       - name: Run hello message in deploy
         run: echo "Hello, world! from deploy job"
+        
+      - name: Deployment package
+        run: | 
+          echo "Deploy package name is: ${{ env. DEPLOY_PACKAGE_NAME}}"
     
