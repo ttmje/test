@@ -1,0 +1,20 @@
+name: CI-DI-Pipeline-to-AWS-ElasticBeanstalk
+env: 
+  EB_PACKAGE_S3_BUCKET_NAAME : "ttm-test-app-packages"
+  EB_APPLICATION_NAME :        "MyZakupkiNotificator"
+  EB_ENVIROMENT_NAME:          "MyZakupkiNotificator-env"
+  DEPLOY_PACKAGE_NAME:         "MyZakupkiNotificator_${{github.sha}}.zip"
+  AWS_REGION_NAME:             "us-east-1"
+  
+on:
+  push:
+    branches: [ main ]
+    
+jobs:
+  my_ci_part:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Git clone our repo
+      - uses: actions/checkout@v2
+      - name: Create ZIP deploment package
+        run: zip -r ${{env.DEPLOY_PACKAGE_NAME}} ./ -x *.git*
