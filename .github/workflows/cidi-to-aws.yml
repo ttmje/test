@@ -2,7 +2,7 @@ name: CI-DI-Pipeline-to-AWS-ElasticBeanstalk
 env: 
   EB_PACKAGE_S3_BUCKET_NAME : "ttm-test-app-packages"
   EB_APPLICATION_NAME :        "MyZakupkiNotificator"
-  EB_ENVIROMENT_NAME:          "MyZakupkiNotificator-env"
+  EB_ENVIROMENT_NAME:          "Myzakupkinotificator-env"
   DEPLOY_PACKAGE_NAME:         "MyZakupkiNotificator_${{github.sha}}.zip"
   AWS_REGION_NAME:             "us-east-1"
   
@@ -58,7 +58,7 @@ jobs:
         --description "CommitSHA-${{github.sha}}"
         
      - name: Deploy new ElastickBeanstalks Application
-       run: aws elasticbeanstalk update-environment --environment-name ${{env.EB_ENVIROMENT_NAME}} --version-label "Version-${{github.sha}}"
+       run: aws elasticbeanstalk update-environment --environment-name ${{env.EB_ENVIROMENT_NAME}} --version-label "Ver-${{github.sha}}"
    
      - name: Print Happy Message for CD finish
        run: echo "CD PIPELINE PART FINISHED SUCCESSFULLY!!" 
