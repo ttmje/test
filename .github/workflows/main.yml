@@ -2,9 +2,9 @@ name: test-action
 env:
   APLLICATION_NAME: "myapp"
   DEPLOY_PACKAGE_NAME: "myapp_deploy_file-ver-${{ github.sha }}"
-on:
-  push:
-    branches: [ main ]
+ #on:
+ # push:
+ #   branches: [ main ]
   
 jobs:
   my_testing:
