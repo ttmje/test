@@ -17,4 +17,6 @@ jobs:
       - name: Git clone our repo
       - uses: actions/checkout@v2
       - name: Create ZIP deploment package
-        run: zip -r ${{env.DEPLOY_PACKAGE_NAME}} ./ -x *.git*
+        run: zip -r ${{env.DEPLOY_PACKAGE_NAME}} ./ -x *.git* |
+             echo "Vrode upakoval v zip"
+             ls -la
