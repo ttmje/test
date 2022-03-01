@@ -49,16 +49,16 @@ jobs:
          aws-secret-access-key: ${{secrets.MY_AWS_SECRET_KEY}}
          aws-region: ${{env.AWS_REGION_NAME}}
    
-     - name: Create new ElasticBeanstalk Application
+     - name: Create new ElasticBeanstalk Application Version
        run: |
         aws elasticbeanstalk create-application-version \
         --application-name ${{env.EB_APPLICATION_NAME}} \
-        --sourse-bundle S3Bucket="${{env.EB_PACKAGE_S3_BUCKET_NAME}}", S3Key="${{env.DEPLOY_PACKAGE_NAME}}" \
-        --version-label "Version-${{github.sha}}" \
+        --source-bundle S3Bucket="${{env.EB_PACKAGE_S3_BUCKET_NAME}}",S3Key="${{env.DEPLOY_PACKAGE_NAME}}" \
+        --version-label "Ver-${{github.sha}}" \
         --description "CommitSHA-${{github.sha}}"
         
      - name: Deploy new ElastickBeanstalks Application
-       run: aws elasticbeanstalk eupdate-environment --envirenment-name ${{env.EB_ENVIROMENT_NAME}} --version-label "Version-${{github.sha}}"
+       run: aws elasticbeanstalk update-environment --environment-name ${{env.EB_ENVIROMENT_NAME}} --version-label "Version-${{github.sha}}"
    
      - name: Print Happy Message for CD finish
        run: echo "CD PIPELINE PART FINISHED SUCCESSFULLY!!" 
